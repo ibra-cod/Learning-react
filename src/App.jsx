@@ -8,25 +8,30 @@ import './css/App.css'
 
 function App() {
 
-  const [firstname, setFirstname] = useState('John Doe')
 
-  const handleChange = (e) => {
-   setFirstname( e.target.value)
-  }
+  const [isTermAccepted, setIsTermAccepted] = useState(false)
 
-  const reset = () => {
-    setFirstname('')
-  }
-
-  console.log('rend');
 
   return (
     <>
-     <input type="text" name='firstname' value={firstname} onChange={handleChange}/>{firstname}
-     <button onClick={reset}>reset</button>
+      <form action="">
+        <CGUCheckbox checked={isTermAccepted} onCheck={setIsTermAccepted}/>
+        <button className='button' disabled={!isTermAccepted} >accpter les terme</button>
+      </form>
     </>
   )
 
+}
+
+
+function CGUCheckbox({checked, onCheck}) {
+  return(
+    <div>
+     <label htmlFor="checkbox">
+        <input onChange={(e) => onCheck(e.target.checked)} type="checkbox" checked={checked} />
+     </label>
+    </div>
+  )
 }
 
 
