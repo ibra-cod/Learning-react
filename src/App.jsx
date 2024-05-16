@@ -5,7 +5,7 @@ import './css/App.css'
 
 const Button = ({name, type, onClick}) => <button type={type} onClick={onClick} >{name}</button>
 
-const showCount = false
+const showCount = true
 
 const todos = [
   'Prenster react',
@@ -15,23 +15,34 @@ const todos = [
 
 
 function App() {
+  const [person, setPerson] = useState({
+    firstname : 'Jhon',
+    lastname: 'Doe',
+    age : 18
+  })
+
   const [count, setCount] = useState(0)
-  const increase = (e) =>  {
-    e.preventDefault()
-      setCount(count + 1)
+
+  const increase = () =>  {
+
+      setPerson(({...person, age : person.age + 1}))
+     
   }
 
-  const decrease = () =>  {
-    setCount((count) => count > 0 ? count - 1 : count = 0)
+  const increaseNumber = () =>  {
+    setCount((count) => count + 1)
+
+   
 }
+
 
   return (
     <>
-    <Title color='red'  >Mon composant </Title>
       <div className='class'>
-       {showCount && <p onClick={increase}>{ count}</p>}
-        <Button type='submit' name='increase' onClick={increase}/>
-        <Button type='submit' name='decrease' onClick={decrease}/>
+        <p> age de {person.firstname  } est de : {person.age}</p>
+        <p> number : {count}</p>
+        <Button type='submit' name='Ganer une anée' onClick={increase}/>
+        <Button type='submit' name='increment' onClick={increaseNumber}/>
       </div>
 
       <ul className='ul'>
@@ -41,19 +52,4 @@ function App() {
   )
 }
 
-
-function Title ({color, children, hidden}) {
-
-  if (hidden) {
-      return null
-  }
-
-  const props = {
-    id :'monID',
-    className : 'maCalss'
-  }
-
-
-  return <h1 {...props}  style={{color: color}}>{children}</h1>
-}
 export default App
