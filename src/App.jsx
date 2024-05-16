@@ -3,53 +3,31 @@ import './css/App.css'
 
 
 
-const Button = ({name, type, onClick}) => <button type={type} onClick={onClick} >{name}</button>
-
-const showCount = true
-
-const todos = [
-  'Prenster react',
-  'faire a manger',
-  'Faire le menage'
-]
+// const Button = ({name, type, onClick}) => <button type={type} onClick={onClick} >{name}</button>
 
 
 function App() {
-  const [person, setPerson] = useState({
-    firstname : 'Jhon',
-    lastname: 'Doe',
-    age : 18
-  })
 
-  const [count, setCount] = useState(0)
+  const [firstname, setFirstname] = useState('John Doe')
 
-  const increase = () =>  {
-
-      setPerson(({...person, age : person.age + 1}))
-     
+  const handleChange = (e) => {
+   setFirstname( e.target.value)
   }
 
-  const increaseNumber = () =>  {
-    setCount((count) => count + 1)
+  const reset = () => {
+    setFirstname('')
+  }
 
-   
-}
-
+  console.log('rend');
 
   return (
     <>
-      <div className='class'>
-        <p> age de {person.firstname  } est de : {person.age}</p>
-        <p> number : {count}</p>
-        <Button type='submit' name='Ganer une anée' onClick={increase}/>
-        <Button type='submit' name='increment' onClick={increaseNumber}/>
-      </div>
-
-      <ul className='ul'>
-          {todos.map((todo) => <li key={todo} >{todo}</li>)}
-      </ul>
+     <input type="text" name='firstname' value={firstname} onChange={handleChange}/>{firstname}
+     <button onClick={reset}>reset</button>
     </>
   )
+
 }
+
 
 export default App
